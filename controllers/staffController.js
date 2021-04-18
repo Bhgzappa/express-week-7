@@ -9,7 +9,7 @@ const staffSignUp = async (req, res) => {
   if (error) return res.status(403).send(error.details[0].message);
 
   //complexity level and hashing using bcrypt
-  const salt = await bcrypt.genSalt(10);
+  const salt = await bcrypt.genSalt(8);
   const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
   //find user from db
@@ -28,12 +28,12 @@ const staffSignUp = async (req, res) => {
 const staffLogin = async (req, res) => {
   //staff verification
   const staff = await Staff.findOne({ email: req.body.email });
-  if (!user) return res.status(404).send("Account does not exist");
+  if (!staff) return res.status(404).send("Account does not exist");
 
   //password verification
   const verifiedPassword = await bcrypt.compare(
     req.body.password,
-    user.password
+    staff.password
   );
   if (!verifiedPassword)
     return res.status(404).send("email does not match with password");
