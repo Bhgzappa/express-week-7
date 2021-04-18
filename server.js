@@ -3,7 +3,7 @@ const dotenv = require("dotenv");
 const morgan = require("morgan");
 const connectDB = require("./configurations/connectDb");
 const patientsRoute = require("./routes/patientsRoute");
-const staffRoute = require("./routes/staffRoutes");
+const staffRoute = require("./routes/staffRoute");
 
 dotenv.config();
 
