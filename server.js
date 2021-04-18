@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const morgan = require("morgan");
 const connectDB = require("./configurations/connectDb");
 const patientsRoute = require("./routes/patientsRoute");
+const staffRoute = require("./routes/staffRoutes");
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ app.use(morgan("dev"));
 
 // routes
 app.use("/api/patients", patientsRoute);
+app.use("/api/staff", staffRoute);
 
 //home route
 app.get("/", (req, res) => {
