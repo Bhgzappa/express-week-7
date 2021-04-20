@@ -4,6 +4,7 @@ const morgan = require("morgan");
 const connectDB = require("./configurations/connectDb");
 const patientsRoute = require("./routes/patientsRoute");
 const staffRoute = require("./routes/staffRoute");
+const cors = require("cors");
 
 dotenv.config();
 
@@ -16,6 +17,7 @@ connectDB();
 app.use(express.json());
 
 app.use(morgan("dev"));
+app.use(cors());
 
 // routes
 app.use("/api/patients", patientsRoute);
