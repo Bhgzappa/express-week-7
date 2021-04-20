@@ -10,7 +10,7 @@ const protect = require("../middlewares/authMiddleware");
 
 const router = express.Router();
 
-router.route("/").post(protect, createPatient).get(protect, getAllPatients);
+router.route("/").post(protect, createPatient).get(getAllPatients);
 router
   .route("/:_id")
   .get(protect, getSinglePatient)
