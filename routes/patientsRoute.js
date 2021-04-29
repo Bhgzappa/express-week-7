@@ -6,15 +6,15 @@ const {
   updatePatient,
   deletePatient,
 } = require("../controllers/patientsController");
-const protect = require("../middlewares/authMiddleware");
+const secure = require("../middlewares/authMiddleware");
 
 const router = express.Router();
 
-router.route("/").post(protect, createPatient).get(getAllPatients);
+router.route("/").post(secure, createPatient).get(getAllPatients);
 router
   .route("/:_id")
-  .get(protect, getSinglePatient)
-  .put(protect, updatePatient)
-  .delete(protect, deletePatient);
+  .get(secure, getSinglePatient)
+  .put(secure, updatePatient)
+  .delete(secure, deletePatient);
 
 module.exports = router;
