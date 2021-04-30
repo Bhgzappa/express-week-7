@@ -44,9 +44,15 @@ const staffLogin = async (req, res) => {
   if (!verifiedPassword)
     return res.status(404).send("email does not match with password");
 
-  res.header("authorization", token_id).send(token_id);
+  // res.header("authorization", token_id).send(token_id);
 
-  res.json({ staff });
+  // res.json({ staff });
+  res.status(202).json({
+    _id:staff._id,
+    name:staff.name,
+    email:staff.email,
+    token:getToken(staff._id)
+  })
 };
 
 module.exports = { staffSignUp, staffLogin };
