@@ -13,7 +13,7 @@ const staffSignUp = async (req, res) => {
   const salt = await bcrypt.genSalt(8);
   const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
-  //find user from db
+  //find staff from db
   const emailFound = await Staff.findOne({ email: req.body.email });
   if (emailFound) return res.status(403).send("email already exist");
 
