@@ -2,6 +2,7 @@ const Staff = require("../models/staffSchema");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { validateAddStaff } = require("../validations/staffValidations");
+const getToken = require("../utils/getToken");
 
 const staffSignUp = async (req, res) => {
   //validate a staff
@@ -22,7 +23,12 @@ const staffSignUp = async (req, res) => {
     password: hashedPassword,
   });
   await newStaff.save();
-  res.status(201).json(newStaff);
+  res.status(201).json({
+    _id: newStaff._id,
+    name: newStaff.name,
+    email: newStaff.email,
+    token: getToken(newStaff._id),
+  });
 };
 
 const staffLogin = async (req, res) => {
@@ -37,11 +43,6 @@ const staffLogin = async (req, res) => {
   );
   if (!verifiedPassword)
     return res.status(404).send("email does not match with password");
-
-  //assign a token
-  const token_id = jwt.sign({ _id: staff._id }, process.env.SECRET_CODE, {
-    expiresIn: "30d",
-  });
 
   res.header("authorization", token_id).send(token_id);
 
