@@ -10,7 +10,7 @@ const secure = require("../middlewares/authMiddleware");
 
 const router = express.Router();
 
-router.route("/").post(secure, createPatient).get(getAllPatients);
+router.route("/").post(secure, createPatient).get(secure, getAllPatients);
 router
   .route("/:_id")
   .get(secure, getSinglePatient)
