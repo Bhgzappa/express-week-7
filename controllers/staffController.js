@@ -1,6 +1,5 @@
 const Staff = require("../models/staffSchema");
 const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
 const { validateAddStaff } = require("../validations/staffValidations");
 const getToken = require("../utils/getToken");
 
