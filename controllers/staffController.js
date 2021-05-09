@@ -20,6 +20,7 @@ const staffSignUp = async (req, res) => {
     name: req.body.name,
     email: req.body.email,
     password: hashedPassword,
+    confirmPassword: hashedPassword,
   });
   await newStaff.save();
   res.status(201).json({
